@@ -1,0 +1,11 @@
+.search-form{
+    @apply w-full max-w-sm m-auto
+}
+
+.input{
+    @apply flex border-b border-green-300 py-2
+}
+
+.coin-input{
+    @apply appearance-none bg-transparent border-none w-full text-gray-100 mr-3 py-1 px-2 leading-tight focus:outline-none
+}
