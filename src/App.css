@@ -1,7 +1,0 @@
-.site-style{
-    @apply bg-gray-800 text-white
-}
-
-.header-coin{
-    @apply text-center text-2xl py-5
-}
