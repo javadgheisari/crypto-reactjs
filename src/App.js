@@ -36,6 +36,7 @@ function App() {
     coin.name.toLowerCase().includes(search.toLowerCase())
     );
 
+    
   return (
     <div className="bg-gray-800 text-white">
       <p className='text-center text-2xl py-5'>Coin List</p>
