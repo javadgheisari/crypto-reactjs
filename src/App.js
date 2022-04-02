@@ -3,6 +3,19 @@ import axios from 'axios';
 import './App.css';
 import Coin from './Coin';
 import Search from './Search';
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  Link,
+  useRouteMatch,
+  useParams
+} from 'react-router-dom'
+import Home from './Home';
+import Two from './Pages/Two';
+import Three from './Pages/Three';
+import Four from './Pages/Four';
+import Five from './Pages/Five';
 
 function App() {
 
@@ -36,42 +49,58 @@ function App() {
     coin.name.toLowerCase().includes(search.toLowerCase())
     );
 
+  // if (filterCoins.length =! 250){
+  //   <Redirect
+  // }
+
+  console.log(filterCoins);
     
   return (
     <div className="bg-gray-800 text-white">
       <p className='text-center text-2xl py-5'>Coin List</p>
       <Search change={handleChange} />
-      <div>
-        <table className='m-auto container w-auto'>
-          <thead>
-              <tr>
-                  <th className='w-44'> Rank </th>
-                  <th className='w-44'> Img </th>
-                  <th className='w-44'> Name </th>
-                  <th className='w-44'> Price (USD)</th>
-                  <th className='w-44'> 24h </th>
-                  <th className='w-44'> 7d </th>
-                  <th className='w-44'> 30d </th>
-              </tr>
-          </thead>
-          <tbody>
-            {filterCoins.map(coin=>{
-              return(
-                <Coin
-                  rank={coin.market_cap_rank} 
-                  key={coin.id}
-                  name={coin.name}
-                  price={coin.current_price}
-                  symbol={coin.symbol}
-                  image={coin.image}
-                  priceChange24h={coin.price_change_percentage_24h_in_currency}
-                  priceChange7d={coin.price_change_percentage_30d_in_currency}
-                  priceChange30d={coin.price_change_percentage_7d_in_currency}
-                />
-              );
-            })}
-          </tbody>
-        </table>
+      <div> 
+      <BrowserRouter>
+      <Routes>
+          <Route path="/" element={<Home filter={filterCoins} />} />
+          <Route path="/2" element={<Two filter={filterCoins} />} />
+          <Route path="/3" element={<Three filter={filterCoins} />} />
+          <Route path="/4" element={<Four filter={filterCoins} />} />
+          <Route path="/5" element={<Five filter={filterCoins} />} />
+      </Routes>
+
+        <nav aria-label="Page navigation example">
+        <ul className="inline-flex items-center -space-x-px mb-6 mx-10">
+        {/* <li>
+        <a href="#" className="block py-2 px-3 ml-0 leading-tight rounded-l-lg border bg-gray-800 border-gray-700 text-gray-400 hover:bg-gray-700 hover:text-white">
+        <span className="sr-only">Previous</span>
+        <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+        </a>
+        </li> */}
+        <li>
+        <a className="block py-2 px-3 ml-0 leading-tight rounded-l-lg border bg-gray-800 border-gray-700 text-gray-400 hover:bg-gray-700 hover:text-white"><Link to='/'>1</Link></a>
+        </li>
+        <li>
+        <a className="py-2 px-3 leading-tight border bg-gray-800 border-gray-700 text-gray-400 hover:bg-gray-700 hover:text-white"><Link to='/2'>2</Link></a>
+        </li>
+        <li>
+        <a className="z-10 py-2 px-3 leading-tight border bg-gray-800 border-gray-700 text-gray-400 hover:bg-gray-700 hover:text-white"><Link to='/3'>3</Link></a>
+        </li>
+        <li>
+        <a className="py-2 px-3 leading-tight border bg-gray-800 border-gray-700 text-gray-400 hover:bg-gray-700 hover:text-white"><Link to='/4'>4</Link></a>
+        </li>
+        <li>
+        <a className="block py-2 px-3 leading-tight rounded-r-lg border bg-gray-800 border-gray-700 text-gray-400 hover:bg-gray-700 hover:text-white"><Link to='/5'>5</Link></a>
+        </li>
+        {/* <li>
+        <a href="#" className="block py-2 px-3 leading-tight rounded-r-lg border bg-gray-800 border-gray-700 text-gray-400 hover:bg-gray-700 hover:text-white">
+        <span className="sr-only">Next</span>
+        <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+        </a>
+        </li> */}
+        </ul>
+        </nav>
+        </BrowserRouter>
       </div>
     </div>
   );
